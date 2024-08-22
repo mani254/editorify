@@ -1,16 +1,8 @@
 {
-   "name": "editorify",
-   "version": "1.0.0",
-   "main": "dist/index.js",
+   "name": "editorify-dev",
+   "version": "1.0.1",
+   "main": "bundle.js",
    "description": "A versatile open-source package providing reusable UI components for backend systems and development, including a powerful text-to-HTML editor ,intuitive image uploader, calendar etc. Designed to simplify content management and enhance user interfaces for e-commerce platforms and other web applications.",
-   "scripts": {
-      "build": "webpack --mode production",
-      "start": "webpack serve --mode development"
-   },
-   "repository": {
-      "type": "git",
-      "url": "https://github.com/mani254/editorify.git"
-   },
    "keywords": [
       "html-editor",
       "text-editor",
@@ -24,8 +16,38 @@
       "open-source",
       "opensource"
    ],
-   "author": "Sai Manikanta",
-   "license": "ISC",
+   "exports": {
+      ".": {
+         "import": {
+            "default": "./dist/index.js",
+            "css": "./dist/styles.css"
+         },
+         "require": {
+            "default": "./dist/index.js",
+            "css": "./dist/styles.css"
+         }
+      },
+      "./editor": {
+         "import": {
+            "default": "./dist/editor/editor.js",
+            "css": "./dist/editor/editor.css"
+         },
+         "require": {
+            "default": "./dist/editor/editor.js",
+            "css": "./dist/editor/editor.css"
+         }
+      },
+      "./calendar": {
+         "import": {
+            "default": "./dist/calendar/calendar.js",
+            "css": "./dist/calendar/calendar.css"
+         },
+         "require": {
+            "default": "./dist/calendar/calendar.js",
+            "css": "./dist/calendar/calendar.css"
+         }
+      }
+   },
    "dependencies": {
       "react": "^18.3.1",
       "react-dom": "^18.3.1"
@@ -45,5 +67,7 @@
    "peerDependencies": {
       "react": "^18.3.1",
       "react-dom": "^18.3.1"
-   }
+   },
+   "author": "Sai Manikanta",
+   "license": "ISC"
 }
