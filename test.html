@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Editorify Test</title>
+   <link rel="stylesheet" href="./dist/editor/editor.css">
+   <link rel="stylesheet" href="./dist/calendar/calendar.css">
+</head>
+
+<body>
+   <div id="editor"></div>
+   <div id="calendar"></div>
+
+   <!-- Load the main JS file -->
+   <script src="./dist/index.js"></script>
+
+   <script>
+      // Verify that the global object 'editorify' exists
+      console.log(editorify); // This should log the object containing Calendar and Editor
+
+      // Instantiate the Editor and Calendar using the global 'editorify'
+      const editor = new editorify.Editor('editor');
+      const calendar = new editorify.Calendar('calendar');
+   </script>
+</body>
+
+</html>

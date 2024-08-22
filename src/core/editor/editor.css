@@ -1,0 +1,11 @@
+/* src/core/editor/editor.css */
+.editor-container {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 10px;
+}
+
+.editor {
+	background-color: #f9f9f9;
+	height: 200px;
+}
