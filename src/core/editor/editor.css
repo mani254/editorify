@@ -1,11 +1,73 @@
-/* src/core/editor/editor.css */
-.editor-container {
-	border: 1px solid #ccc;
+/* General Editor Container */
+.editor {
+	border: 1px solid #ddd;
+	border-radius: 4px;
 	padding: 10px;
-	margin: 10px;
+	background-color: #f9f9f9;
+	font-family: Arial, sans-serif;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.editor {
-	background-color: #f9f9f9;
-	height: 200px;
+/* Toolbar Styles */
+.toolbar {
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+	padding: 5px;
+}
+
+.toolbar-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.toolbar-container .styles,
+.toolbar-container .alignments,
+.toolbar-container .list {
+	display: flex;
+	gap: 5px;
+}
+
+.toolbar-container button {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 5px 10px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+.toolbar-container button:hover {
+	background-color: #f0f0f0;
+}
+
+.toolbar-container button:active {
+	background-color: #e0e0e0;
+}
+
+/* Content Area Styles */
+.contentArea {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 10px;
+	min-height: 200px;
+	background-color: #fff;
+	margin-top: 10px;
+	overflow-y: auto;
+	line-height: 1.5;
+	font-size: 16px;
+}
+
+/* Code Block Styles */
+.codeBlock {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: #f4f4f4;
+	margin-top: 10px;
+	font-family: monospace;
+	white-space: pre-wrap;
+	min-height: 100px;
+	overflow-y: auto;
 }

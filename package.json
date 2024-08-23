@@ -16,36 +16,34 @@
       "open-source",
       "opensource"
    ],
+   "scripts": {
+      "build": "webpack --mode production",
+      "start": "webpack serve --mode development"
+   },
    "exports": {
       ".": {
-         "import": {
-            "default": "./dist/index.js",
-            "css": "./dist/styles.css"
-         },
-         "require": {
-            "default": "./dist/index.js",
-            "css": "./dist/styles.css"
-         }
+         "import": "./dist/index.js",
+         "require": "./dist/index.js"
+      },
+      "./css": {
+         "import": "./dist/styles.css",
+         "require": "./dist/styles.css"
       },
       "./editor": {
-         "import": {
-            "default": "./dist/editor/editor.js",
-            "css": "./dist/editor/editor.css"
-         },
-         "require": {
-            "default": "./dist/editor/editor.js",
-            "css": "./dist/editor/editor.css"
-         }
+         "import": "./dist/editor/editor.js",
+         "require": "./dist/editor/editor.js"
+      },
+      "./editor/css": {
+         "import": "./dist/editor/editor.css",
+         "require": "./dist/editor/editor.css"
       },
       "./calendar": {
-         "import": {
-            "default": "./dist/calendar/calendar.js",
-            "css": "./dist/calendar/calendar.css"
-         },
-         "require": {
-            "default": "./dist/calendar/calendar.js",
-            "css": "./dist/calendar/calendar.css"
-         }
+         "import": "./dist/calendar/calendar.js",
+         "require": "./dist/calendar/calendar.js"
+      },
+      "./calendar/css": {
+         "import": "./dist/calendar/calendar.css",
+         "require": "./dist/calendar/calendar.css"
       }
    },
    "dependencies": {

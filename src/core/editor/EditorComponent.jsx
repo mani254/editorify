@@ -1,15 +1,15 @@
-// src/core/editor/EditorComponent.jsx
 const React = require("react");
 const { useEffect } = React;
 const Editor = require("./editor");
 require("./editor.css");
 
-const EditorComponent = ({ id }) => {
+const EditorComponent = ({ id, maxSteps, showCodeBlock, toolbarConfig, className }) => {
 	useEffect(() => {
-		new Editor(id);
+		const editorInstance = new Editor({ containerId: id, maxSteps, showCodeBlock, toolbarConfig, className });
+		editorInstance.initialize();
 	}, [id]);
 
-	return React.createElement("div", { id: id, className: "editor-container" });
+	return React.createElement("div", { id: id, className: className });
 };
 
 module.exports = EditorComponent;
