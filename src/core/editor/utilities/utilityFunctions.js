@@ -49,12 +49,17 @@ function createContentWrapper(editorInstance) {
    contentWrapper.appendChild(contentArea);
 
    if (editorInstance.showCodeBlock) {
-      const codeBlock = editorInstance.createElement('div', 'code-block', editorInstance.codeBlockId);
+      const codeBlock = editorInstance.createElement('pre', 'code-block', editorInstance.codeBlockId); // Change to 'pre'
+      codeBlock.setAttribute('contenteditable', true);
+      codeBlock.addEventListener('input', () => {
+         editorInstance.updateContentAreaFromCodeBlock();
+      });
       contentWrapper.appendChild(codeBlock);
    }
 
    return contentWrapper;
 }
+
 
 function createCodeToggle() {
    const cdToggleWrapper = document.createElement('div', 'cd-toggle-wrapper');
@@ -70,9 +75,63 @@ function createCodeToggle() {
 }
 
 
+function debounce(func, wait) {
+   let timeout;
+
+   return function (...args) {
+      const later = () => {
+         timeout = null;
+         func.apply(this, args);
+      };
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+   };
+}
+
+function formatHTML(html) {
+   const indentSize = 2;
+   let formatted = '';
+   let indentLevel = 0;
+
+   // Split HTML by tags while preserving the tags themselves
+   const lines = html.split(/(<[^>]+>)/g).filter(line => line.trim().length > 0);
+
+   lines.forEach((line) => {
+      if (line.match(/^<\/(p|ul|li|a)>$/)) {
+         // Closing tags that need a newline after them
+         indentLevel -= 1;
+         formatted += ' '.repeat(indentSize * indentLevel) + line.trim() + '\n\n';
+      } else {
+         if (line.match(/^<\/\w/)) {
+            // Other closing tags: decrease indent level
+            indentLevel -= 1;
+         }
+
+         formatted += ' '.repeat(indentSize * indentLevel) + line.trim();
+
+         if (line.match(/^<\w(?!.*\/>)/)) {
+            // Opening tags that are not self-closing: increase indent level
+            indentLevel += 1;
+         }
+
+         // Add newline after content and tags that should not be inline
+         if (!line.match(/<\w.*\/>/)) {
+            formatted += '\n';
+         }
+      }
+   });
+
+   return formatted.trim();
+}
+
+
+
+
+
 function generateUniqueId(length = 5) {
    const possible = 'abcdefghijklmnopqrstuv';
    return Array.from({ length }, () => possible.charAt(Math.floor(Math.random() * possible.length))).join('');
 }
 
-module.exports = { generateUniqueId, iconMap, renderToolbar, createContentWrapper, createCodeToggle }
+module.exports = { generateUniqueId, iconMap, renderToolbar, createContentWrapper, createCodeToggle, debounce, formatHTML }
