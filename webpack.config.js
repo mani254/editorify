@@ -18,6 +18,7 @@ module.exports = {
       library: 'editorify',
       libraryTarget: 'umd',
       globalObject: 'this',
+      publicPath: '/assets/images/'
    },
 
    module: {
@@ -41,7 +42,23 @@ module.exports = {
             MiniCssExtractPlugin.loader,
             'css-loader'
          ]
+      },
+      {
+         test: /\.(png|jpg|jpeg|gif|svg)$/,
+         use: [
+            {
+               loader: 'url-loader',
+               options: {
+                  limit: 8192,
+                  name: '[name].[ext]',
+                  outputPath: 'assets/images',
+                  publicPath: '/assets/images',
+                  esModule: false,
+               }
+            }
+         ]
       }
+
       ]
    },
    resolve: {
@@ -64,6 +81,7 @@ module.exports = {
    mode: 'development',
    devServer: {
       static: path.resolve(__dirname, 'dist'),
-      hot: true
+      hot: true,
+      publicPath: '/assets/images/'
    }
 };

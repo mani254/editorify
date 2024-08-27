@@ -1,6 +1,5 @@
 const ActionStack = require('./actionStack.js');
-
-const { generateUniqueId } = require('./utilityFunctions.js');
+const { generateUniqueId, iconMap, renderToolbar, createContentWrapper, createCodeToggle } = require('./utilities/utilityFunctions.js')
 
 class Editor {
    constructor({
@@ -8,15 +7,19 @@ class Editor {
       maxSteps = 30,
       showCodeBlock = true,
       toolbarConfig = {
+         actions: ['undo', 'redo'],
          styles: ['bold', 'italic', 'underline', 'strikeThrough'],
          alignments: ['center', 'left', 'right', 'justify'],
          list: ['orderedList', 'unorderedList'],
+         link: ['link']
       },
    } = {}) {
+      if (!containerId) throw new Error('containerId is required');
+
+      this.containerId = containerId;
       this.actionStack = new ActionStack(maxSteps);
       this.showCodeBlock = showCodeBlock;
       this.toolbarConfig = toolbarConfig;
-      this.containerId = containerId;
       this.toolbarId = generateUniqueId();
       this.codeBlockId = generateUniqueId();
       this.contentAreaId = generateUniqueId();
@@ -28,51 +31,21 @@ class Editor {
 
       container.classList.add('editor');
 
-      const toolbarWrapper = document.createElement('div');
-      toolbarWrapper.className = 'toolbar';
-      toolbarWrapper.id = this.toolbarId;
-
-      const toolbarElement = await this.renderToolbar();
-      toolbarWrapper.appendChild(toolbarElement);
-      container.appendChild(toolbarWrapper);
-
-      const contentArea = document.createElement('div');
-      contentArea.className = 'contentArea';
-      contentArea.id = this.contentAreaId;
-      contentArea.contentEditable = true;
-      container.appendChild(contentArea);
+      container.appendChild(this.createElement('div', 'toolbar', this.toolbarId, await renderToolbar(this)));
+      container.appendChild(createContentWrapper(this));
 
       if (this.showCodeBlock) {
-         const codeBlock = document.createElement('div');
-         codeBlock.className = 'codeBlock';
-         codeBlock.id = this.codeBlockId;
-         container.appendChild(codeBlock);
+         container.appendChild(createCodeToggle());
       }
    }
 
-
-   async renderToolbar() {
-      const toolbarWrapper = document.createElement('div');
-      toolbarWrapper.className = "toolbar-container";
-
-      for (const group in this.toolbarConfig) {
-         const itemsContainer = document.createElement('div');
-         itemsContainer.className = group;
-
-         for (const item of this.toolbarConfig[group]) {
-            const button = document.createElement('button');
-            button.className = item;
-            button.innerText = item.charAt(0).toUpperCase() + item.slice(1);
-            button.addEventListener('click', () => this.handleToolbarAction(item));
-            itemsContainer.appendChild(button);
-         }
-
-         toolbarWrapper.appendChild(itemsContainer);
-      }
-
-      return toolbarWrapper;
+   createElement(tag, className, id = null, child = null) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (id) element.id = id;
+      if (child) element.appendChild(child);
+      return element;
    }
-
 
    handleToolbarAction(action) {
       switch (action) {
@@ -89,7 +62,6 @@ class Editor {
    }
 
    updateCodeBlock() {
-      const editor = document.getElementById(this.containerId)
       const contentArea = document.getElementById(this.contentAreaId);
       const codeBlock = document.getElementById(this.codeBlockId);
       if (codeBlock) {
