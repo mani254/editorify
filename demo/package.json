@@ -7,9 +7,9 @@
       "build": "webpack"
    },
    "dependencies": {
-      "editorify-dev": "file:../editorify-dev",
       "react": "^18.3.1",
-      "react-dom": "^18.3.1"
+      "react-dom": "^18.3.1",
+      "react-router-dom": "^6.26.2"
    },
    "devDependencies": {
       "@babel/core": "^7.25.2",

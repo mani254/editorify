@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
    entry: {
       'editor': './src/core/editor/index.js',
-      'calendar': './src/core/calendar/index.js',
+      'imageUploader': './src/core/imageUploader/index.js',
       'main': './src/index.js'
    },
    output: {

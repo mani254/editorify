@@ -34,17 +34,17 @@
          "import": "./dist/editor/editor.js",
          "require": "./dist/editor/editor.js"
       },
-      "./editor/css": {
+      "./css/editor": {
          "import": "./dist/editor/editor.css",
          "require": "./dist/editor/editor.css"
       },
-      "./calendar": {
-         "import": "./dist/calendar/calendar.js",
-         "require": "./dist/calendar/calendar.js"
+      "./imageUploader": {
+         "import": "./dist/imageUploader/imageUploader.js",
+         "require": "./dist/imageUploader/imageUploader.js"
       },
-      "./calendar/css": {
-         "import": "./dist/calendar/calendar.css",
-         "require": "./dist/calendar/calendar.css"
+      "./css/imageUploader": {
+         "import": "./dist/imageUploader/imageUploader.css",
+         "require": "./dist/imageUploader/imageUploader.css"
       }
    },
    "dependencies": {
