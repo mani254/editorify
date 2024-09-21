@@ -3,9 +3,7 @@ import { ImageUploaderComponent } from "editorify-dev/imageUploader";
 import "editorify-dev/css/imageUploader";
 
 function ImageUploader() {
-	const handleImagesChange = (images) => {
-		console.log(images);
-	};
+	const handleImagesChange = (images) => {};
 
 	return (
 		<div>

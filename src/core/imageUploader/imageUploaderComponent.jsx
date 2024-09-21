@@ -5,9 +5,9 @@ require("./imageUploader.css");
 
 const ImageUploaderComponent = ({ id, maxImages, maxFileSize, validTypes, onImagesChange }) => {
 	useEffect(() => {
-		const imageUploderInstance = new ImageUploader((containerId = id), maxImages, maxFileSize, validTypes, onImagesChange);
+		const imageUploderInstance = new ImageUploader({ containerId: id, maxImages, maxFileSize, validTypes, onImagesChange });
 		imageUploderInstance.init();
-	}, [id, onImagesChange]);
+	}, []);
 
 	return React.createElement("div", { id: id });
 };

@@ -1,5 +1,5 @@
 class ImageUploader {
-   constructor(containerId = null, maxImages = 5, maxFileSize = 2048, validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"], onImagesChange = null) {
+   constructor({ containerId = null, maxImages = -1, maxFileSize = -1, validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"], onImagesChange = null }) {
       this.containerId = containerId
       this.maxImages = maxImages;
       this.maxFileSize = maxFileSize;
@@ -74,10 +74,13 @@ class ImageUploader {
       try {
          const image = await this.fetchImageFromUrl(imgUrl);
 
-         if (image.size / 1024 > this.maxFileSize) {
-            alert(`The image exceeds the maximum file size of ${this.maxFileSize} KB.`);
-            return;
+         if (this.maxFileSize > 1) {
+            if (image.size / 1024 > this.maxFileSize) {
+               alert(`The image exceeds the maximum file size of ${this.maxFileSize} KB.`);
+               return;
+            }
          }
+
          if (image) {
             if (this.validTypes.includes(image.type)) {
                this.images.push(image);
@@ -98,19 +101,25 @@ class ImageUploader {
       let files = Array.from(event.target.files);
       event.target.value = ""; // Reset the input value
 
-      let sliceValue = this.maxImages - this.previewImages.length;
-      if (sliceValue <= 0) {
-         alert("Maximum number of images reached.");
-         return; // Prevent further processing if max images reached
+      if (this.maxImages > 0) {
+         let sliceValue = this.maxImages - this.previewImages.length;
+         if (sliceValue <= 0) {
+            alert("Maximum number of images reached.");
+            return; // Prevent further processing if max images reached
+         }
+         files = files.slice(0, sliceValue);
       }
 
-      files = files.slice(0, sliceValue);
+
 
       for (const file of files) {
-         if (file.size / 1024 > this.maxFileSize) {
-            alert(`File ${file.name} exceeds the maximum file size of ${this.maxFileSize} KB.`);
-            continue; // Skip this file
+         if (this.maxFileSize > 0) {
+            if (file.size / 1024 > this.maxFileSize) {
+               alert(`File ${file.name} exceeds the maximum file size of ${this.maxFileSize} KB.`);
+               continue; // Skip this file
+            }
          }
+
          if (this.validTypes.includes(file.type)) {
             try {
                const image = await this.fetchImageFromUrl(URL.createObjectURL(file));
@@ -264,7 +273,7 @@ class ImageUploader {
             imageItems.appendChild(coverImageWrapper);
          });
 
-         if (this.previewImages.length < this.maxImages) {
+         if (this.previewImages.length < this.maxImages || this.maxImages < 0) {
             const addBlock = document.createElement('div');
             addBlock.className = 'cover-image-wrapper add-block';
             const uploadButton = document.createElement('button');
