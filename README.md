@@ -27,11 +27,9 @@ npm install editorify-dev
 yarn add editorify-dev
 ```
 
-
 # Image Uploader
 
 The image uploader component streamlines image uploads with a responsive UI ideal for web development and e-commerce. Users can easily drag and reposition images, ensuring a polished look. Its compatibility with any JavaScript environment makes it a must-have for seamless image management.
-
 
 ## Usage React
 
@@ -56,6 +54,7 @@ function ImageUploader() {
 				maxImages={5}         // Optional: Maximum number of images allowed
 				maxFileSize={1024}    // Optional: Maximum file size in KB
 				validTypes={["image/jpeg", "image/png", "image/webp", "image/gif"]} // Optional: Valid file types
+            loadedImages={["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]} // to load the image urls at the initial loading helps while updating the images so that you can fetch and provide the links to display those images
 			/>
 		</div>
 	);
@@ -63,7 +62,6 @@ function ImageUploader() {
 
 export default ImageUploader;
 ```
-
 
 ## Usage in standard HTML/Javasctipt or any js environment
 
@@ -82,7 +80,8 @@ Make sure to import css and image uploader form the package
             maxImages: 5,
             maxFileSize: 1024,
             validTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
-            onImagesChange: handleImagesChange
+            onImagesChange: handleImagesChange,
+            loadedImages=["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]
         });
     </script>
 </body>
@@ -92,18 +91,18 @@ Make sure to import css and image uploader form the package
 
 | Prop             | Type       | Required | Default Value | Description                                                               |
 | ---------------- | ---------- | -------- | ------------- | ------------------------------------------------------------------------- |
-| `id`             | `string`   | Yes      | -             | A unique ID for the component's container.                                |
+| `id`             | `string`   | Yes      | -            | A unique ID for the component's container.                                |
 | `maxImages`      | `number`   | No       | `-1`          | The maximum number of images that can be uploaded.                        |
 | `maxFileSize`    | `number`   | No       | `-1`          | The maximum file size (in KB) for uploaded images.                        |
 | `validTypes`     | `array`    | No       | Default types | An array of valid MIME types for uploaded images.                         |
 | `onImagesChange` | `function` | No       | -             | Callback function that receives the updated images when the list changes. |
+| `loadedImages`   | `array`    | No       | -             | An array of image links
 
 ### Additional Information
 
 -  **`maxImages`**: If set to `-1`, there is no limit on the number of images that can be uploaded.
 -  **`maxFileSize`**: If set to `-1`, there is no limit on the file size of uploaded images.
 -  **`validTypes`**: This allows you to specify which types of images are accepted during the upload process.
-
 
 # Editor
 

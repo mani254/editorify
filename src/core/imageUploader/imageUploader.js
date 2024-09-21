@@ -1,9 +1,10 @@
 class ImageUploader {
-   constructor({ containerId = null, maxImages = -1, maxFileSize = -1, validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"], onImagesChange = null }) {
+   constructor({ containerId = null, maxImages = -1, maxFileSize = -1, validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"], onImagesChange = null, loadedImages = [] }) {
       this.containerId = containerId
       this.maxImages = maxImages;
       this.maxFileSize = maxFileSize;
       this.validTypes = validTypes;
+      this.loadedImages = loadedImages
 
       this.images = [];
       this.previewImages = [];
@@ -22,6 +23,15 @@ class ImageUploader {
       window.addEventListener("resize", () => this.setCoverImageHeight());
       this.createContainer();
       this.setCoverImageHeight();
+      this.setLoadedImages()
+   }
+
+   async setLoadedImages() {
+      if (!this.loadedImages) return
+
+      for (let imageUrl of this.loadedImages) {
+         await this.handleAddUrl(imageUrl)
+      }
    }
 
    updateImages() {
@@ -303,7 +313,7 @@ class ImageUploader {
          }
       }
 
-      if (this.showUrlInput && this.previewImages.length < this.maxImages) {
+      if (this.showUrlInput && (this.previewImages.length < this.maxImages || this.maxImages < 0)) {
          const urlInputDiv = document.createElement('div');
          urlInputDiv.className = 'url-input';
 
