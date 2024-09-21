@@ -1,29 +1,41 @@
-# Image uploader component 
-Editorify is A versatile open-source package providing reusable UI components for backend systems and development, including a powerful text-to-HTML editor ,intuitive image uploader, calendar etc. Designed to simplify content management and enhance user interfaces for e-commerce platforms and other web applications.
+# Image uploader component
+
+The image uploader component provides seamless image uploading with drag-and-drop functionality, image previews, and customizable settings. It supports image repositioning by dragging, ensuring a responsive and user-friendly experience. Its flexible design makes it easy to use in both React and standard HTML/JavaScript environments, making it an efficient solution for any web application requiring intuitive and effective image uploads.
 
 ## Installation
 
 To install the package, use either npm or yarn:
+
 ### Using npm
+
 ```bash
 npm install editorify-dev
 ```
+
 ### Using yarn
+
 ```bash
 yarn add editorify-dev
 ```
+
 Make sure to include the CSS file for proper styling:
+
 ```Javascript
 import "editorify-dev/css/imageUploader";
 ```
+
 ## Usage React
+
 ### importing the component
+
 ```Javascript
 import React from "react";
 import { ImageUploaderComponent } from "editorify-dev/imageUploader";
 import "editorify-dev/css/imageUploader";
 ```
+
 ### Example component
+
 ```Javascript
 function ImageUploader() {
 	const handleImagesChange = (images) => {
@@ -33,9 +45,9 @@ function ImageUploader() {
 
 	return (
 		<div>
-			<ImageUploaderComponent 
-				id="fkjdlfj" 
-				onImagesChange={handleImagesChange} 
+			<ImageUploaderComponent
+				id="fkjdlfj"
+				onImagesChange={handleImagesChange}
 				maxImages={5}         // Optional: Maximum number of images allowed
 				maxFileSize={1024}    // Optional: Maximum file size in KB
 				validTypes={["image/jpeg", "image/png", "image/webp", "image/gif"]} // Optional: Valid file types
@@ -46,10 +58,14 @@ function ImageUploader() {
 
 export default ImageUploader;
 ```
+
 ## Usage in Standard HTML/JavaScript
+
 You can also use the ImageUploader class directly in a standard HTML and JavaScript environment. Here’s how:
+
 ### HTML Example
-``` HTML
+
+```HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,18 +94,19 @@ You can also use the ImageUploader class directly in a standard HTML and JavaScr
 </body>
 </html>
 ```
-## Props
-| Prop              | Type     | Required | Default Value | Description                                                             |
-|-------------------|----------|----------|---------------|-------------------------------------------------------------------------|
-| `id`              | `string` | Yes      | -             | A unique ID for the component's container.                              |
-| `maxImages`       | `number` | No       | `-1`          | The maximum number of images that can be uploaded.                      |
-| `maxFileSize`     | `number` | No       | `-1`          | The maximum file size (in KB) for uploaded images.                      |
-| `validTypes`      | `array`  | No       | Default types | An array of valid MIME types for uploaded images.                       |
-| `onImagesChange`  | `function` | No      | -             | Callback function that receives the updated images when the list changes. |
 
+## Props
+
+| Prop             | Type       | Required | Default Value | Description                                                               |
+| ---------------- | ---------- | -------- | ------------- | ------------------------------------------------------------------------- |
+| `id`             | `string`   | Yes      | -             | A unique ID for the component's container.                                |
+| `maxImages`      | `number`   | No       | `-1`          | The maximum number of images that can be uploaded.                        |
+| `maxFileSize`    | `number`   | No       | `-1`          | The maximum file size (in KB) for uploaded images.                        |
+| `validTypes`     | `array`    | No       | Default types | An array of valid MIME types for uploaded images.                         |
+| `onImagesChange` | `function` | No       | -             | Callback function that receives the updated images when the list changes. |
 
 ### Additional Information
 
-- **`maxImages`**: If set to `-1`, there is no limit on the number of images that can be uploaded.
-- **`maxFileSize`**: If set to `-1`, there is no limit on the file size of uploaded images.
-- **`validTypes`**: This allows you to specify which types of images are accepted during the upload process.
+-  **`maxImages`**: If set to `-1`, there is no limit on the number of images that can be uploaded.
+-  **`maxFileSize`**: If set to `-1`, there is no limit on the file size of uploaded images.
+-  **`validTypes`**: This allows you to specify which types of images are accepted during the upload process.
