@@ -3,10 +3,13 @@ import { ImageUploaderComponent } from "editorify-dev/imageUploader";
 import "editorify-dev/css/imageUploader";
 
 function ImageUploader() {
+	const handleImagesChange = (images) => {
+		console.log(images);
+	};
+
 	return (
 		<div>
-			{/* <div> Hello</div> */}
-			<ImageUploaderComponent id="fkjdlfj" clsasName="imageUploader" />
+			<ImageUploaderComponent id="fkjdlfj" onImagesChange={handleImagesChange} />
 		</div>
 	);
 }

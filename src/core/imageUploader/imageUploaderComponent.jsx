@@ -3,15 +3,13 @@ const { useEffect } = React;
 const ImageUploader = require("./imageUploader");
 require("./imageUploader.css");
 
-const ImageUploaderComponent = ({ id = null, className = null, maxImages = 5, maxFileSize = 2048, validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"] }) => {
+const ImageUploaderComponent = ({ id, maxImages, maxFileSize, validTypes, onImagesChange }) => {
 	useEffect(() => {
-		const imageUploderInstance = new ImageUploader({ containerId: id, maxImages, maxFileSize, validTypes });
+		const imageUploderInstance = new ImageUploader((containerId = id), maxImages, maxFileSize, validTypes, onImagesChange);
 		imageUploderInstance.init();
-	}, [id]);
+	}, [id, onImagesChange]);
 
-	// console.log(id, className, maxImages, maxFileSize, validTypes);
-
-	return React.createElement("div", { id: id, className: className });
+	return React.createElement("div", { id: id });
 };
 
 module.exports = ImageUploaderComponent;
