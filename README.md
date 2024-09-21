@@ -105,10 +105,9 @@ Make sure to import css and image uploader form the package
 -  **`validTypes`**: This allows you to specify which types of images are accepted during the upload process.
 
 
-#Editor
+# Editor
 
-The text editor component offers a smooth and intuitive experience for creating and editing content, with automatic text-to-HTML conversion. It supports rich formatting options such as bold, italics, lists, and links, with real-time HTML preview. The editor is fully responsive and designed for easy integration into both React and standard HTML/JavaScript environments. Its customizable toolbar and clean, minimalistic interface make it an efficient and user-friendly solution for any web application requiring rich text editing and seamless HTML conversion.<br>
-For detailed usage, props, and examples, check the [Editor README.md](./components/EDITOR.md)
+The text editor component offers a smooth and intuitive experience for creating and editing content, with automatic text-to-HTML conversion. It supports rich formatting options such as bold, italics, lists, and links, with real-time HTML preview. The editor is fully responsive and designed for easy integration into both React and standard HTML/JavaScript environments. Its customizable toolbar and clean, minimalistic interface make it an efficient and user-friendly solution for any web application requiring rich text editing and seamless HTML conversion.
 
 ## Contributing
 
