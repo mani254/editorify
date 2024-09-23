@@ -5,9 +5,9 @@
 .editor {
 	width: 100%;
 	height: auto;
-	border: 0.5px solid #ddd;
-	border-radius: 12px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border: 0.5px solid rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	/* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 	display: flex;
 	flex-direction: column;
 	justify-content: stretch;
@@ -70,7 +70,7 @@
 }
 
 .editor .cd-toogle-wrapper {
-	background: #f3f3f3;
+	background: #f3f4f6;
 	width: 130px;
 	padding: 5px;
 	border-top-right-radius: 12px;
@@ -86,10 +86,10 @@
 }
 
 .editor .toggle-button {
-	padding: 5px 25px;
+	padding: 3px 20px;
 	border-radius: 5px;
 }
 
 .editor .toggle-button.active {
-	background: #efefef;
+	background: #f3f4f6;
 }
