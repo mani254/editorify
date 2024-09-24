@@ -9,8 +9,14 @@ function ImageUploader() {
 	};
 
 	return (
-		<div>
-			<ImageUploaderComponent id="fkjdlfj" onImagesChange={handleImagesChange} loadedImages={["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]} />
+		<div style={{ height: "95vh", display: "flex", alignItems: "center", background: "#f1f1f1" }}>
+			<div style={{ width: "100%", maxWidth: "700px", margin: "auto" }}>
+				<ImageUploaderComponent
+					id="fkjdlfj"
+					onImagesChange={handleImagesChange}
+					//  loadedImages={["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]}
+				/>
+			</div>
 		</div>
 	);
 }
