@@ -15,7 +15,7 @@ const EditorComponent = ({ id, maxSteps, showCodeBlock, toolbarConfig, className
 		return () => {
 			editorRef.current = null;
 		};
-	}, [id]);
+	}, [id, maxSteps, showCodeBlock, toolbarConfig, className]);
 
 	return React.createElement("div", { id: id, className: className });
 };

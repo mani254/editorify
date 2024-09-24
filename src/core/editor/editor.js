@@ -25,13 +25,15 @@ class Editor {
       this.contentAreaId = generateUniqueId();
    }
 
-   async initialize() {
+   initialize() {
       const container = document.getElementById(this.containerId);
       if (!container) return;
 
+      container.innerHTML = ""
+
       container.classList.add('editor');
 
-      container.appendChild(createElement('div', 'toolbar', this.toolbarId, await renderToolbar(this)));
+      container.appendChild(createElement('div', 'toolbar', this.toolbarId, renderToolbar(this)));
       container.appendChild(createMainEditor(this));
 
       const contentArea = document.getElementById(this.contentAreaId);

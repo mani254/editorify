@@ -15,7 +15,7 @@ const ImageUploaderComponent = ({ id, maxImages, maxFileSize, validTypes, onImag
 		return () => {
 			imageUploaderRef.current = null;
 		};
-	}, [id]);
+	}, [id, maxImages, maxFileSize, validTypes, loadedImages]);
 
 	return React.createElement("div", { id: id });
 };
