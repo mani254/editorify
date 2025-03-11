@@ -1,20 +1,17 @@
 {
    "name": "editorify-dev",
-   "version": "1.1.1",
+   "version": "2.0",
    "main": "index.js",
    "description": "A versatile open-source package providing reusable UI components for backend systems and development, including a powerful text-to-HTML editor ,intuitive image uploader, calendar etc. Designed to simplify content management and enhance user interfaces for e-commerce platforms and other web applications.",
    "keywords": [
-      "html-editor",
-      "text-editor",
+      "file-uploader",
+      "react-components",
       "image-uploader",
-      "calendar",
       "UI-components",
       "reusable-components",
       "backend-ui",
       "e-commerce",
-      "content-management",
-      "open-source",
-      "opensource"
+      "open-source"
    ],
    "scripts": {
       "build": "webpack --mode production",

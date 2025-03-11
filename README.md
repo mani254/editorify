@@ -1,31 +1,41 @@
-# editorify-dev
+# Editorify-Dev
 
-Editorify is A versatile open-source package providing reusable UI components for backend systems and development, including a powerful text-to-HTML editor ,intuitive image uploader, calendar etc. Designed to simplify content management and enhance user interfaces for e-commerce platforms and other web applications.
+**Editorify-Dev** is an open-source React library providing reusable UI components that enhance user experience and accelerate development. Designed for seamless integration, these components streamline common UI functionalities.
 
-## Table of Contents
+## Available Components
 
--  [Installation](#installation)
--  Components
-   -  [Image Uploader](#image-uploader)
-   -  [Editor](#editor)
--  [Contributing](#contributing)
--  [License](#license)
+-  [FileUploader](#fileuploader)
+
+---
+
+## FileUploader
+
+The `FileUploader` component offers an intuitive drag-and-drop interface for managing file uploads. It supports images, videos, PDFs, and documents, allowing users to reorder files before processing. This component does **not** automatically upload files to a server but provides an interface for users to handle file storage using the `onFilesChange` callback.
+
+### Features
+
+-  **Drag & Drop Support**: Easily upload files using drag-and-drop.
+-  **File Previews**: Displays previews for images and videos.
+-  **Reordering**: Users can reposition files before processing.
+-  **Validation**: Supports `maxFiles`, `maxFileSize`, and `validTypes` for file restrictions.
+-  **Preloaded Files**: Load initial files using the `loadedFiles` prop.
+
+---
 
 ## Installation
 
-To install the package, use either npm or yarn:
+Install the package using npm or yarn:
 
 ### Using npm
 
-```bash
+````bash
 npm install editorify-dev
-```
 
 ### Using yarn
 
 ```bash
 yarn add editorify-dev
-```
+````
 
 # Image Uploader
 
@@ -36,77 +46,52 @@ The image uploader component streamlines image uploads with a responsive UI idea
 ### Example component
 
 ```Javascript
-import React from "react";
-import { ImageUploaderComponent } from "editorify-dev/imageUploader";
-import "editorify-dev/css/imageUploader";
+import React, { useState } from "react";
+import { FileUploader } from "editorify-dev";
+import "editorify-dev/css/fileUploader";
 
-function ImageUploader() {
-	const handleImagesChange = (images) => {
-		// Handle the updated images here
-		console.log("Updated images:", images);
-	};
+function FileUploadComponent() {
+    const [files, setFiles] = useState([]);
 
-	return (
-		<div>
-			<ImageUploaderComponent
-				id="fkjdlfj"
-				onImagesChange={handleImagesChange}
-				maxImages={5}         // Optional: Maximum number of images allowed
-				maxFileSize={1024}    // Optional: Maximum file size in KB
-				validTypes={["image/jpeg", "image/png", "image/webp", "image/gif"]} // Optional: Valid file types
-            loadedImages={["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]} // to load the image urls at the initial loading helps while updating the images so that you can fetch and provide the links to display those images
-			/>
-		</div>
-	);
+    const handleFilesChange = (updatedFiles) => {
+        setFiles(updatedFiles);
+        console.log("Updated files:", updatedFiles);
+    };
+
+    return (
+        <div>
+            <FileUploader
+                id="file-uploader"
+                onFilesChange={handleFilesChange}
+                maxFiles={5} // Optional: Maximum number of files allowed
+                maxFileSize={2048} // Optional: Maximum file size in KB
+                validTypes={["image/jpeg", "image/png", "image/webp", "video/mp4", "application/pdf"]} // Allowed file types
+                loadedFiles={["https://example.com/sample.pdf"]} // Optional: Preloaded files
+            />
+        </div>
+    );
 }
 
-export default ImageUploader;
+export default FileUploadComponent;
 ```
 
-## Usage in standard HTML/Javasctipt or any js environment
+## Props
 
-Make sure to import css and image uploader form the package
+| Prop            | Type       | Required | Default Value | Description                                           |
+| --------------- | ---------- | -------- | ------------- | ----------------------------------------------------- |
+| `id`            | `string`   | Yes      | -             | A unique ID for the component.                        |
+| `maxFiles`      | `number`   | No       | `-1`          | Maximum number of files allowed (`-1` for unlimited). |
+| `maxFileSize`   | `number`   | No       | `-1`          | Maximum file size in KB (`-1` for no limit).          |
+| `validTypes`    | `array`    | No       | Images only   | Allowed MIME types for uploaded files.                |
+| `onFilesChange` | `function` | No       | -             | Callback function receiving the updated file list.    |
+| `loadedFiles`   | `array`    | No       | -             | Array of file URLs to preload in the component.       |
 
-```HTML
-<body>
-    <div id="image-uploader-container"></div>
-    <script>
-        const handleImagesChange = (images) => {
-            console.log("Updated images:", images);
-        };
+## Additional Information
 
-        const uploader = new ImageUploader({
-            containerId: 'image-uploader-container',
-            maxImages: 5,
-            maxFileSize: 1024,
-            validTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
-            onImagesChange: handleImagesChange,
-            loadedImages=["https://news.ubc.ca/wp-content/uploads/2023/08/AdobeStock_559145847.jpeg"]
-        });
-    </script>
-</body>
-```
-
-### Props
-
-| Prop             | Type       | Required | Default Value | Description                                                               |
-| ---------------- | ---------- | -------- | ------------- | ------------------------------------------------------------------------- |
-| `id`             | `string`   | Yes      | -            | A unique ID for the component's container.                                |
-| `maxImages`      | `number`   | No       | `-1`          | The maximum number of images that can be uploaded.                        |
-| `maxFileSize`    | `number`   | No       | `-1`          | The maximum file size (in KB) for uploaded images.                        |
-| `validTypes`     | `array`    | No       | Default types | An array of valid MIME types for uploaded images.                         |
-| `onImagesChange` | `function` | No       | -             | Callback function that receives the updated images when the list changes. |
-| `loadedImages`   | `array`    | No       | -             | An array of image links
-
-### Additional Information
-
--  **`maxImages`**: If set to `-1`, there is no limit on the number of images that can be uploaded.
--  **`maxFileSize`**: If set to `-1`, there is no limit on the file size of uploaded images.
--  **`validTypes`**: This allows you to specify which types of images are accepted during the upload process.
-
-# Editor
-
-The text editor component offers a smooth and intuitive experience for creating and editing content, with automatic text-to-HTML conversion. It supports rich formatting options such as bold, italics, lists, and links, with real-time HTML preview. The editor is fully responsive and designed for easy integration into both React and standard HTML/JavaScript environments. Its customizable toolbar and clean, minimalistic interface make it an efficient and user-friendly solution for any web application requiring rich text editing and seamless HTML conversion.
+-  **`maxFiles`**: If set to `-1`, there is no limit on the number of files that can be uploaded.
+-  **`maxFileSize`**: If set to `-1`, there is no file size restriction.
+-  **`validTypes`**: Specifies the acceptable file types for upload.
+-  **Preloaded Files**: Use `loadedFiles` to display existing files when initializing the component.
 
 ## Contributing
 

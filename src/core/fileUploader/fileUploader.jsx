@@ -2,7 +2,7 @@ const React = require("react");
 const { useState, useEffect, useRef, useCallback } = React;
 require("./fileUploader.css");
 
-const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validTypes = ["image/jpeg", "image/webp", "image/png", "image/gif"], onImagesChange = null, loadedImages = null }) => {
+const FileUploader = ({ containerId, maxFiles = -1, maxFileSize = -1, validTypes = ["image/jpeg", "image/webp", "image/png", "image/gif"], onFilesChange = null, loadedFiles = null }) => {
 	const [showUrlInput, setShowUrlInput] = useState(false);
 	const [url, setUrl] = useState("");
 	const [previewImages, setPreviewImages] = useState([]);
@@ -13,21 +13,21 @@ const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validType
 	const inputRef = useRef(null);
 
 	useEffect(() => {
-		if (Array.isArray(loadedImages) && loadedImages.length) {
-			handleUrls(loadedImages);
+		if (Array.isArray(loadedFiles) && loadedFiles.length) {
+			handleUrls(loadedFiles);
 		} else {
 			setPreviewImages((prev) => []);
 			setImages((prev) => []);
 		}
-	}, [loadedImages]);
+	}, [loadedFiles]);
 
 	const handleFileChange = useCallback(
 		async (event) => {
 			let files = Array.from(event.target.files);
 			event.target.value = "";
 
-			if (maxImages > 0) {
-				const sliceValue = maxImages - previewImages.length;
+			if (maxFiles > 0) {
+				const sliceValue = maxFiles - previewImages.length;
 				if (sliceValue <= 0) {
 					alert("Maximum number of images reached.");
 					return;
@@ -59,9 +59,9 @@ const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validType
 
 			setImages((prev) => [...prev, ...newImages]);
 			setPreviewImages((prev) => [...prev, ...newPreviews]);
-			onImagesChange([...images, ...newImages]);
+			onFilesChange([...images, ...newImages]);
 		},
-		[maxImages, previewImages, onImagesChange]
+		[maxFiles, previewImages, onFilesChange]
 	);
 
 	const handleDelete = useCallback((index) => {
@@ -213,7 +213,7 @@ const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validType
 								</div>
 							);
 						})}
-						{(previewImages.length < maxImages || maxImages < 0) && (
+						{(previewImages.length < maxFiles || maxFiles < 0) && (
 							<div className="cover-image-wrapper add-block">
 								<button
 									type="button"
@@ -222,7 +222,7 @@ const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validType
 									}}>
 									Add files
 								</button>
-								<input ref={inputRef} type="file" multiple={maxImages === 1 ? false : true} accept={validTypes.join(",")} onChange={(e) => handleFileChange(e)}></input>
+								<input ref={inputRef} type="file" multiple={maxFiles === 1 ? false : true} accept={validTypes.join(",")} onChange={(e) => handleFileChange(e)}></input>
 								<button type="button" className="url-toggle" onClick={() => setShowUrlInput(!showUrlInput)}>
 									Add From Url
 								</button>
@@ -245,10 +245,10 @@ const FileUploader = ({ containerId, maxImages = -1, maxFileSize = -1, validType
 								Add From Url
 							</button>
 						</div>
-						<input ref={fileInputRef} type="file" multiple={maxImages === 1 ? false : true} accept={validTypes.join(",")} onChange={handleFileChange}></input>
+						<input ref={fileInputRef} type="file" multiple={maxFiles === 1 ? false : true} accept={validTypes.join(",")} onChange={handleFileChange}></input>
 					</div>
 				)}
-				{showUrlInput && (previewImages.length < maxImages || maxImages < 0) && (
+				{showUrlInput && (previewImages.length < maxFiles || maxFiles < 0) && (
 					<div className="url-input">
 						<input
 							placeholder="Enter URL"
