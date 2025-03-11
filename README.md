@@ -30,6 +30,7 @@ Install the package using npm or yarn:
 
 ````bash
 npm install editorify-dev
+````
 
 ### Using yarn
 
@@ -42,8 +43,6 @@ yarn add editorify-dev
 The image uploader component streamlines image uploads with a responsive UI ideal for web development and e-commerce. Users can easily drag and reposition images, ensuring a polished look. Its compatibility with any JavaScript environment makes it a must-have for seamless image management.
 
 ## Usage React
-
-### Example component
 
 ```Javascript
 import React, { useState } from "react";
@@ -91,7 +90,7 @@ export default FileUploadComponent;
 -  **`maxFiles`**: If set to `-1`, there is no limit on the number of files that can be uploaded.
 -  **`maxFileSize`**: If set to `-1`, there is no file size restriction.
 -  **`validTypes`**: Specifies the acceptable file types for upload.
--  **Preloaded Files**: Use `loadedFiles` to display existing files when initializing the component.
+-  **`Preloaded Files`**: Use `loadedFiles` to display existing files when initializing the component.
 
 ## Contributing
 
