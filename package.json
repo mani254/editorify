@@ -30,21 +30,13 @@
          "import": "./dist/styles.css",
          "require": "./dist/styles.css"
       },
-      "./editor": {
-         "import": "./dist/editor/editor.js",
-         "require": "./dist/editor/editor.js"
-      },
-      "./css/editor": {
-         "import": "./dist/editor/editor.css",
-         "require": "./dist/editor/editor.css"
-      },
       "./imageUploader": {
-         "import": "./dist/imageUploader/imageUploader.js",
-         "require": "./dist/imageUploader/imageUploader.js"
+         "import": "./dist/fileUploader/fileUploader.js",
+         "require": "./dist/fileUploader/fileUploader.js"
       },
       "./css/imageUploader": {
-         "import": "./dist/imageUploader/imageUploader.css",
-         "require": "./dist/imageUploader/imageUploader.css"
+         "import": "./dist/fileUploader/fileUploader.css",
+         "require": "./dist/fileUploader/fileUploader.css"
       }
    },
    "dependencies": {

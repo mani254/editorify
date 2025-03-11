@@ -4,8 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
    entry: {
-      'editor': './src/core/editor/index.js',
-      'imageUploader': './src/core/imageUploader/index.js',
+      'imageUploader': './src/core/fileUploader/index.js',
       'main': './src/index.js'
    },
    output: {
@@ -15,7 +14,7 @@ module.exports = {
             ? 'index.js'
             : `${pathData.chunk.name}/${pathData.chunk.name}.js`;
       },
-      library: 'editorify',
+      library: 'editorify-dev',
       libraryTarget: 'umd',
       globalObject: 'this',
       publicPath: '/assets/images/'

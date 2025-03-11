@@ -1,9 +1,6 @@
-const { Editor } = require('./core/editor');
-
-const { ImageUploader } = require('./core/imageUploader')
+const fileUploader = require('./core/fileUploader/fileUploader')
 
 module.exports = {
-   Editor,
-   ImageUploader,
+   fileUploader
 };
 
